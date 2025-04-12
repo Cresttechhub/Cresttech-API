@@ -9,6 +9,7 @@ import { EmailModule } from './email/email.module';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { EventHandler } from './event-handler';
 import { MailService } from './email/email.service';
+import { CourseModule } from './course/course.module';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { MailService } from './email/email.service';
     AuthModule,
     UserModule,
     EmailModule,
+    CourseModule,
   ],
   controllers: [AppController],
   providers: [AppService, EventHandler, MailService],
