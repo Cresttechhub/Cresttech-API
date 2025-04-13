@@ -9,6 +9,8 @@ import { EmailModule } from './email/email.module';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { EventHandler } from './event-handler';
 import { MailService } from './email/email.service';
+import { PasswordResetModule } from './password-reset/password-reset.module';
+import { Templates } from './email/templates/templates';
 
 @Module({
   imports: [
@@ -36,8 +38,9 @@ import { MailService } from './email/email.service';
     AuthModule,
     UserModule,
     EmailModule,
+    PasswordResetModule,
   ],
   controllers: [AppController],
-  providers: [AppService, EventHandler, MailService],
+  providers: [AppService, EventHandler, MailService, Templates],
 })
 export class AppModule {}

@@ -11,7 +11,7 @@ export enum ErrorMessages {
 
   //Admin Error Messages
   ADMIN_EXISTS_ERROR = 'Super Admin Exists Already',
-  PASSWORD_ERROR = 'Passwords do not match',
+  PASSWORD_MISMATCH = 'Passwords do not match',
 
   // AUth Errors Messages
   INVALID_LOGIN_DETAILS_ERROR = 'Invalid Email or Password',
@@ -20,8 +20,8 @@ export enum ErrorMessages {
   INVALID_AUTH_TOKEN_ERROR = 'Invalid Authorization token',
   INVALID_OTP = 'Activation Failed! The Email or OTP you entered is incorrect. Please try again.',
   INVALID_CREDENTIALS = 'Invalid Credentials!',
-  PASSWORD_RESET_ERROR = 'Unable to process password reset request',
-  RESET_TOKEN_ERROR = 'Reset token expired or invalid',
+  PASSWORD_RESET_FAILED = 'Unable to process password reset request',
+  RESET_TOKEN_ERROR = 'Invalid or Expired Token',
 
   //Validation
   PERMISSION_NOT_GRANTED_ERROR = 'Permission Not Granted',
