@@ -9,9 +9,10 @@ import { JwtService } from '@nestjs/jwt';
 import { UserService } from 'src/user/user.service';
 import { PasswordResetService } from 'src/password-reset/password-reset.service';
 import { PasswordReset } from 'src/password-reset/entities/password-reset.entity';
+import { Course } from 'src/course/entities/course.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User, PasswordReset])],
+  imports: [TypeOrmModule.forFeature([User, PasswordReset, Course])],
   controllers: [AuthController],
   providers: [
     AuthService,
