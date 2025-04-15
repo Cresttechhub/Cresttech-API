@@ -11,6 +11,7 @@ import { EventHandler } from './event-handler';
 import { MailService } from './email/email.service';
 import { PasswordResetModule } from './password-reset/password-reset.module';
 import { Templates } from './email/templates/templates';
+import { CourseModule } from './course/course.module';
 
 @Module({
   imports: [
@@ -28,8 +29,8 @@ import { Templates } from './email/templates/templates';
         database: configService.get('DB_NAME'),
         ssl: configService.get('POSTGRES_SSLMODE')
           ? {
-              rejectUnauthorized: false,
-            }
+            rejectUnauthorized: false,
+          }
           : false,
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
         synchronize: true,
@@ -39,8 +40,9 @@ import { Templates } from './email/templates/templates';
     UserModule,
     EmailModule,
     PasswordResetModule,
+    CourseModule,
   ],
   controllers: [AppController],
   providers: [AppService, EventHandler, MailService, Templates],
 })
-export class AppModule {}
+export class AppModule { }

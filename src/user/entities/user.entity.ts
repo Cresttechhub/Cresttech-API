@@ -1,8 +1,11 @@
+import { Course } from 'src/course/entities/course.entity';
 import { UserType } from 'src/shared/types/type.enum';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinTable,
+  ManyToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -35,6 +38,10 @@ export class User {
 
   @Column({ type: 'enum', enum: UserType, default: UserType.User })
   userType: UserType;
+
+  @ManyToMany(() => Course)
+  @JoinTable()
+  selectedCourses: Course[];
 
   @CreateDateColumn()
   createdAt: Date;

@@ -28,6 +28,10 @@ export enum ErrorMessages {
 
   // Database
   DATABASE_ERROR = 'An unexpected database error occurred',
+
+  //Course
+  COURSE_ALREADY_EXIST = 'A Course With That Name Already Exists',
+  COURSE_NOT_FOUND = 'Course Not Found',
 }
 
 export enum DatabaseErrorNumber {
