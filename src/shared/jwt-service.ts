@@ -83,22 +83,22 @@ export class JwtHandler {
 
   async verifyToken(token: string) {
     try {
-      return await this.jwtService.verifyAsync<JwtPayload>(token, {
+      return await this.jwtService.verifyAsync(token, {
         secret: this.SECRET,
       });
     } catch (error) {
       this.logger.error('Error verifying token:', error);
-      throw new BadRequestException('Invalid or Expired Token');
+      throw new BadRequestException(ErrorMessages.RESET_TOKEN_ERROR);
     }
   }
 
-  async generateResetToken(email: string) {
+  async generateResetToken(payload: { sub: string; token: string }) {
     try {
       return await this.jwtService.signAsync(
-        { email },
+        { payload },
         {
           secret: this.SECRET,
-          expiresIn: this.TOKEN_EXPIRATION,
+          expiresIn: '15m',
         },
       );
     } catch (error) {

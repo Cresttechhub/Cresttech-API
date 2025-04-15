@@ -7,8 +7,6 @@ import {
   SwaggerModule,
 } from '@nestjs/swagger';
 import { ConfigService } from '@nestjs/config';
-import { SuccessResponse } from './shared';
-import { UserResDto } from './user/dto/user-res.dto';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

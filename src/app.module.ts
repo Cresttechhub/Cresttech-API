@@ -9,6 +9,8 @@ import { EmailModule } from './email/email.module';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { EventHandler } from './event-handler';
 import { MailService } from './email/email.service';
+import { PasswordResetModule } from './password-reset/password-reset.module';
+import { Templates } from './email/templates/templates';
 import { CourseModule } from './course/course.module';
 
 @Module({
@@ -27,8 +29,8 @@ import { CourseModule } from './course/course.module';
         database: configService.get('DB_NAME'),
         ssl: configService.get('POSTGRES_SSLMODE')
           ? {
-              rejectUnauthorized: false,
-            }
+            rejectUnauthorized: false,
+          }
           : false,
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
         synchronize: true,
@@ -37,9 +39,10 @@ import { CourseModule } from './course/course.module';
     AuthModule,
     UserModule,
     EmailModule,
+    PasswordResetModule,
     CourseModule,
   ],
   controllers: [AppController],
-  providers: [AppService, EventHandler, MailService],
+  providers: [AppService, EventHandler, MailService, Templates],
 })
-export class AppModule {}
+export class AppModule { }

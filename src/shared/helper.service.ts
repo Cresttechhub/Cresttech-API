@@ -39,6 +39,14 @@ export class HelperService {
     return new Date(Date.now() + this.OTP_EXPIRY_MINUTES * 60 * 1000);
   }
 
+  generateToken() {
+    return crypto.randomBytes(32).toString('hex');
+  }
+
+  hashToken(token: string) {
+    return crypto.createHash('sha256').update(token).digest('hex');
+  }
+
   generatePaginationResponse(
     limit: number = 10,
     offset: number = 0,

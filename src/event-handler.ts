@@ -1,12 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
 import { MailService } from './email/email.service';
-import { EMAIL_VERIFIED, SIGNUP_OTP } from './shared';
+import { EMAIL_VERIFIED, PASSWORD_RESET, SIGNUP_OTP } from './shared';
 import { Templates } from './email/templates/templates';
 
 @Injectable()
 export class EventHandler {
-  constructor(private readonly mailService: MailService) {}
+  constructor(
+    private readonly mailService: MailService,
+    private readonly templates: Templates,
+  ) {}
 
   @OnEvent(SIGNUP_OTP)
   async handleSignupOTP(payload: {
@@ -17,7 +20,10 @@ export class EventHandler {
     await this.mailService.sendMail({
       to: [payload.email],
       subject: 'Verify Your Account',
-      html: Templates.emailVerificationTemplate(payload.otp, payload.fullName),
+      html: this.templates.emailVerificationTemplate(
+        payload.otp,
+        payload.fullName,
+      ),
     });
   }
 
@@ -26,7 +32,23 @@ export class EventHandler {
     await this.mailService.sendMail({
       to: [payload.email],
       subject: 'Welcome To CrestTech Hub',
-      html: Templates.welcomeTemplate(payload.name),
+      html: this.templates.welcomeTemplate(payload.name),
+    });
+  }
+
+  @OnEvent(PASSWORD_RESET)
+  async passwordReset(payload: {
+    email: string;
+    resetToken: string;
+    name: string;
+  }) {
+    await this.mailService.sendMail({
+      to: [payload.email],
+      subject: 'Password Reset Request',
+      html: this.templates.passwordResetTemplate(
+        payload.resetToken,
+        payload.name,
+      ),
     });
   }
 }
