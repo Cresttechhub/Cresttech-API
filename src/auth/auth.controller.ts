@@ -6,6 +6,7 @@ import {
   HttpCode,
   Query,
   Get,
+  Header,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from 'src/user/dto/create-user.dto';
@@ -62,6 +63,7 @@ export class AuthController {
    * @throws {UnauthorizedException} For invalid password or unverified account
    */
   @Post('login')
+  @Header('Content-Type', 'application/json')
   @HttpCode(HttpStatus.OK)
   // @Serialize(UserResDto)
   async login(@Body() dto: LoginDto) {
