@@ -15,18 +15,7 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
-  app.enableCors({
-    origin: [
-      'https://www.cresttech.org',
-      'https://cresttechhub.vercel.app',
-      // Optional: Include a regex to match all subdomains of cresttech.org
-      /https?:\/\/(.+\.)?cresttech\.org/,
-    ],
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-    allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
-    // credentials: true, // If using cookies/sessions
-    exposedHeaders: ['Authorization'], // If using custom headers
-  });
+  app.enableCors();
 
   const config = new DocumentBuilder()
     .setTitle('CrestTech Hub')
